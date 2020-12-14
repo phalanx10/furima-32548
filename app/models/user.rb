@@ -20,5 +20,5 @@ class User < ApplicationRecord
       validates :first_name_kana
     end
   end
-  validates :password, format: { with: /\A[a-zA-Z0-9]+\z/, message: "is invalid. Input half-width characters."}
+  validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i, message: "is invalid. Set including both letters and numbers."}
 end
