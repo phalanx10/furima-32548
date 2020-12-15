@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :item do
-    item_name {'dd'}
-    description {'dd'}
-    price {'300'}
+    item_name { 'dd' }
+    description { 'dd' }
+    price { '300' }
     status_id { 3 }
     delivery_days_id { 3 }
     shipping_area_id { 3 }

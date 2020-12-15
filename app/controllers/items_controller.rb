@@ -17,13 +17,12 @@ class ItemsController < ApplicationController
   end
 
   private
+
   def item_params
-    params.require(:item).permit(:item_name,:image,:description,:price,:status_id,:delivery_days_id,:shipping_area_id,:delivery_fee_id,:categories_id).merge(user_id: current_user.id)
+    params.require(:item).permit(:item_name, :image, :description, :price, :status_id, :delivery_days_id, :shipping_area_id, :delivery_fee_id, :categories_id).merge(user_id: current_user.id)
   end
 
   def move_to_signin
-    unless user_signed_in?
-      authenticate_user!
-    end
+    authenticate_user! unless user_signed_in?
   end
 end
