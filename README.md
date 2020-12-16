@@ -26,10 +26,10 @@
 | description      | text       | null: false                    |
 | price            | integer    | null: false                    |
 | status_id        | integer    | null: false                    |
-| delivery_days_id | integer    | null: false                    |
+| delivery_day_id  | integer    | null: false                    |
 | Shipping_area_id | integer    | null: false                    |
 | delivery_fee_id  | integer    | null: false                    |
-| categories_id    | integer    | null: false                    |
+| category_id      | integer    | null: false                    |
 | user             | references | null: false, foreign_key: true |
 
 - has_one :purchase_record
