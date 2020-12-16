@@ -17,10 +17,14 @@ class ItemsController < ApplicationController
     end
   end
 
+  def show
+    @item = Item.find(params[:id])
+  end
+
   private
 
   def item_params
-    params.require(:item).permit(:item_name, :image, :description, :price, :status_id, :delivery_days_id, :shipping_area_id, :delivery_fee_id, :categories_id).merge(user_id: current_user.id)
+    params.require(:item).permit(:item_name, :image, :description, :price, :status_id, :delivery_day_id, :shipping_area_id, :delivery_fee_id, :category_id).merge(user_id: current_user.id)
   end
 
   def move_to_signin
