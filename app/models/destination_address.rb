@@ -7,5 +7,5 @@ class DestinationAddress < ApplicationRecord
     validates :address
     validates :phone_number
   end
-  validates :prefecture, numericality: { other_than: 1, message: "can't be blank" }
+  validates :prefecture, numericality: { other_than: 0, message: "can't be blank" }
 end
