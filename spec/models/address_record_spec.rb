@@ -56,5 +56,11 @@ RSpec.describe AddressRecord, type: :model do
       expect(@address_record).to be_valid
     end
 
+    it "tokenが空では保存できないこと" do
+      @address_record.token = nil
+      @address_record.valid?
+      expect(@address_record.errors.full_messages).to include("Token can't be blank")
+    end
+
   end
 end
