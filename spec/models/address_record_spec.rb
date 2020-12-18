@@ -62,5 +62,17 @@ RSpec.describe AddressRecord, type: :model do
       expect(@address_record.errors.full_messages).to include("Token can't be blank")
     end
 
+    it "user_idが空では保存できないこと" do
+      @address_record.user_id = nil
+      @address_record.valid?
+      expect(@address_record.errors.full_messages).to include("User can't be blank")
+    end
+
+    it "item_idが空では保存できないこと" do
+      @address_record.item_id = nil
+      @address_record.valid?
+      expect(@address_record.errors.full_messages).to include("Item can't be blank")
+    end
+
   end
 end
