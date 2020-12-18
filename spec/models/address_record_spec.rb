@@ -51,6 +51,12 @@ RSpec.describe AddressRecord, type: :model do
       expect(@address_record.errors.full_messages).to include("Phone number Input only number")
     end
 
+    it 'phone_numberが12桁以上だと登録できないこと' do
+      @address_record.phone_number = 1234567890123
+      @address_record.valid?
+      expect(@address_record.errors.full_messages).to include("Phone number Input only number")
+    end
+
     it 'building_nameは空でも保存できること' do
       @address_record.building_name = nil
       expect(@address_record).to be_valid
