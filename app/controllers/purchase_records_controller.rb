@@ -2,7 +2,7 @@ class PurchaseRecordsController < ApplicationController
   before_action :set_item, only: [:index, :create]
   before_action :move_to_signin
   before_action :move_to_index
-  
+
   def index
     @address_record = AddressRecord.new
   end
@@ -12,7 +12,7 @@ class PurchaseRecordsController < ApplicationController
     if @address_record.valid?
       pay_item
       @address_record.save
-      return redirect_to root_path
+      redirect_to root_path
     else
       render 'index'
     end
@@ -21,7 +21,7 @@ class PurchaseRecordsController < ApplicationController
   private
 
   def address_record_params
-    params.require(:address_record).permit(:post_code, :prefecture, :city, :address, :building_name, :phone_number,:purchase_record_id).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+    params.require(:address_record).permit(:post_code, :prefecture, :city, :address, :building_name, :phone_number, :purchase_record_id).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
 
   def move_to_signin
@@ -41,12 +41,11 @@ class PurchaseRecordsController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: @item.price,
       card: address_record_params[:token],
       currency: 'jpy'
     )
   end
-
 end

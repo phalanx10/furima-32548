@@ -16,9 +16,9 @@ RSpec.describe AddressRecord, type: :model do
     end
 
     it 'post_codeにハイフンがないと登録できないこと' do
-      @address_record.post_code = 2222222
+      @address_record.post_code = 2_222_222
       @address_record.valid?
-      expect(@address_record.errors.full_messages).to include("Post code Input correctly")
+      expect(@address_record.errors.full_messages).to include('Post code Input correctly')
     end
 
     it 'prefectureが空だと登録できないこと' do
@@ -48,13 +48,13 @@ RSpec.describe AddressRecord, type: :model do
     it 'phone_numberが数字以外だと登録できないこと' do
       @address_record.phone_number = 'aaaaaaaaaaa'
       @address_record.valid?
-      expect(@address_record.errors.full_messages).to include("Phone number Input only number")
+      expect(@address_record.errors.full_messages).to include('Phone number Input only number')
     end
 
     it 'phone_numberが12桁以上だと登録できないこと' do
-      @address_record.phone_number = 1234567890123
+      @address_record.phone_number = 1_234_567_890_123
       @address_record.valid?
-      expect(@address_record.errors.full_messages).to include("Phone number Input only number")
+      expect(@address_record.errors.full_messages).to include('Phone number Input only number')
     end
 
     it 'building_nameは空でも保存できること' do
@@ -62,23 +62,22 @@ RSpec.describe AddressRecord, type: :model do
       expect(@address_record).to be_valid
     end
 
-    it "tokenが空では保存できないこと" do
+    it 'tokenが空では保存できないこと' do
       @address_record.token = nil
       @address_record.valid?
       expect(@address_record.errors.full_messages).to include("Token can't be blank")
     end
 
-    it "user_idが空では保存できないこと" do
+    it 'user_idが空では保存できないこと' do
       @address_record.user_id = nil
       @address_record.valid?
       expect(@address_record.errors.full_messages).to include("User can't be blank")
     end
 
-    it "item_idが空では保存できないこと" do
+    it 'item_idが空では保存できないこと' do
       @address_record.item_id = nil
       @address_record.valid?
       expect(@address_record.errors.full_messages).to include("Item can't be blank")
     end
-
   end
 end
